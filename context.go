@@ -4,7 +4,7 @@ import "context"
 
 type contextkey string
 
-const ContextKey contextkey = "data"
+const ContextKey contextkey = "capsolver"
 
 // WithContext wraps the given session with a context.
 func WithContext(ctx context.Context, s *Session) context.Context {
