@@ -71,7 +71,9 @@ func (s *Session) Solve(task any) (*Result, error) {
 	if res.Error.ID == 1 {
 		return nil, res.Error
 	}
-	for ; res.Status != StatusReady; <-time.Tick(3 * time.Second) {
+	for i := 0; res.Status != StatusReady && i < MaxRetries; i++ {
+		time.Sleep(3 * time.Second)
+
 		res, err = s.getTaskResult(res.TaskId)
 		if err != nil {
 			return nil, err
